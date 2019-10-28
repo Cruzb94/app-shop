@@ -15,12 +15,12 @@
           <table class="table">
             <thead>
                 <tr>
-                    <th class="text-center">#</th>
+                    <th>#</th>
                     <th>Nombre</th>
-                    <th class="col-md-4">Descripción</th>
+                    <th>Descripción</th>
                     <th>Categoría</th>
-                    <th class="text-right">Precio</th>
-                    <th class="text-right">Opciones</th>
+                    <th>Precio</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,12 +31,15 @@
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->category ? $product->category->name : 'General' }}</td>
                     <td class="text-right">{{ $product->price }}</td>
-                    <td class="td-actions text-right">
+                    <td>
                         <a href="" rel="tooltip" title="Ver Producto" class="btn btn-info btn-simple btn-xs">
                             <i class="fa fa-info"></i>
                         </a>
                         <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-simple btn-xs">
                             <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del Producto" class="btn btn-warning btn-simple btn-xs">
+                            <i class="fa fa-image"></i>
                         </a>
                         <form action="{{ url('/admin/products/'.$product->id) }}" method="post">
                           {{ csrf_field() }}
