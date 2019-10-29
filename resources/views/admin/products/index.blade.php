@@ -31,7 +31,7 @@
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->category ? $product->category->name : 'General' }}</td>
                     <td class="text-right">{{ $product->price }}</td>
-                    <td>
+                    <td style="display: inline-grid;">
                         <a href="" rel="tooltip" title="Ver Producto" class="btn btn-info btn-simple btn-xs">
                             <i class="fa fa-info"></i>
                         </a>
