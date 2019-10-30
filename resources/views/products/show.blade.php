@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Bienvenido a App Shop')
-@section('body-class','landing-page sidebar-collapse')
+@section('body-class','profile-page')
 @section('styles')
 <style>
   .team .row .col-md-4{
@@ -13,12 +13,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1 class="title">Bienvenido a App Shop.</h1>
-          <h4>Realiza pedidos en linea y te contactaremos para coordinar la entrega.</h4>
+          <h1 class="title"></h1>
+          <h4></h4>
           <br>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
-            <i class="fa fa-play"></i> ¿Cómo funciona?
-          </a>
+          
         </div>
       </div>
     </div>
@@ -42,40 +40,27 @@
         <div class="description text-center">
           <p>{{ $product->long_description}}</p>
         </div>
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile-tabs">
-              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                    <i class="material-icons">camera</i> Studio
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                    <i class="material-icons">palette</i> Work
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                    <i class="material-icons">favorite</i> Favorite
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          
+        <div class="text-center">
+          <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
+            <i class="material-icons">add</i> Añadir al Carrito 
+          </button>
         </div>
+
         <div class="tab-content tab-space">
           <div class="tab-pane active text-center gallery" id="studio">
             <div class="row">
-              <div class="col-md-3 ml-auto">
-                <img src="../assets/img/examples/studio-1.jpg" class="rounded">
-                <img src="../assets/img/examples/studio-2.jpg" class="rounded">
+              @foreach($images as $image)
+              <div class="col-md-4">
+                <div class="team-player">
+                  <div class="card card-plain">
+                    <div class="col-md-6 ml-auto mr-auto">
+                      <img src="{{ $image->image }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-3 mr-auto">
-                <img src="../assets/img/examples/studio-5.jpg" class="rounded">
-                <img src="../assets/img/examples/studio-4.jpg" class="rounded">
-              </div>
+              @endforeach
             </div>
           </div>
           <div class="tab-pane text-center gallery" id="works">
@@ -105,6 +90,29 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalAddToCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seleccione la cantidad</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="post">
+          <div class="modal-body">
+            <input type="number" name="quantity" value="1" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
