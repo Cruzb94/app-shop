@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\ProductImage;
 
 class ProductController extends Controller
 {
     public function show($id) {
-    	return "id producto $id";
+    	$product = Product::find($id);
+    	$images = $product->images()->orderBy('featured', 'desc')->get();
+    	return view('products.show')->with(compact('product', 'images'));
     }
 }

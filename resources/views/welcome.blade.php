@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('title', 'Bienvenido a App Shop')
 @section('body-class','landing-page sidebar-collapse')
+@section('styles')
+<style>
+  .team .row .col-md-4{
+    margin-bottom: 3em;
+  }
+</style>
+@endsection
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('img/profile_city.jpg') }}')">
     <div class="container">
@@ -69,7 +76,7 @@
                     <img src="{{ $product->featured_image_url }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                   </div>
                   <h4 class="card-title">
-                    <a href="{{ url('/products/'. $product->id }}">{{ $product->name }}</a>
+                    <a href="{{ url('/products/'. $product->id) }}">{{ $product->name }}</a>
                     <br>
                     <small class="card-description text-muted">{{ $product->category->name }}</small>
                   </h4>
@@ -80,6 +87,11 @@
               </div>
             </div>
             @endforeach
+          </div>
+          <div class="row">
+            <div class="col-md-4 offset-md-4">
+              {{ $products->links() }}
+            </div>
           </div>
         </div>
       </div>
