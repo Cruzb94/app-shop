@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (session()->exists('product')) {
+            $product = session()->get('product');
+            session()->forget('product');
+            return redirect('/products/'.$product);
+        }
         return view('home');
     }
 }

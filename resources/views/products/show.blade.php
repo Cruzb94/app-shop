@@ -30,6 +30,12 @@
               <div class="avatar">
                 <img src="{{ $product->featured_image_url }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
               </div>
+
+              @if (session('notification'))
+                  <div class="alert alert-success" role="alert">
+                      {{ session('notification') }}
+                  </div>
+              @endif
               <div class="name">
                 <h3 class="title">{{ $product->name }}</h3>
                 <h6>{{ $product->category->name }}</h6>
@@ -104,8 +110,10 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="" method="post">
+        <form action="{{ url('/cart') }}" method="post">
+          {{ csrf_field() }}
           <div class="modal-body">
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
             <input type="number" name="quantity" value="1" class="form-control">
           </div>
           <div class="modal-footer">
